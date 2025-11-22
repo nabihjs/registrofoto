@@ -126,6 +126,56 @@ import vivo24 from "../img/viv/viv24.jpg"
       descripcion="el club audiovisual - lomo metropolis - 2021"
       />
     </div>
+    <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" aria-label="Cerrar imagen">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <p></p>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.imagenes img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    images.forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('is-open');
+      });
+    });
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightboxImg.src = '';
+    };
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+  </script>
+                      <footer>
+                        <nav class="menu">
+                  <a href="index.html">
+                        <svg class="flota" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 12 12"><!-- Icon from Dinkie Icons by atelierAnchor - https://github.com/atelier-anchor/dinkie-icons/blob/main/LICENSE --><path fill="currentColor" d="M1 12h9V8h1V6h-1v1H1V6H0v2h1Zm0-6h1V5H1Zm1 5V8h7v3H7V9H4v2Zm3 0v-1h1v1ZM2 5h1V4H2Zm7 1h1V1H7v2H3v1h5V2h1v2H8v1h1Zm0 0"/></svg>
+                  </a>
+                  <a href="bio.html">
+                        <svg class="flota" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 12 12"><!-- Icon from Dinkie Icons by atelierAnchor - https://github.com/atelier-anchor/dinkie-icons/blob/main/LICENSE --><path fill="currentColor" d="M9 5h1V1H9v1H8v1h1Zm-8 6h1v-1H1Zm-1-1h1V5H0Zm2 2h7v-1H2Zm2-2h3V9H6V8H5v1H4ZM3 7h1V5H3ZM1 5h1V3h1V2H2V1H1Zm8 6h1v-1H9ZM7 7h1V5H7ZM3 4h5V3H3Zm7 6h1V5h-1Zm0 0"/></svg>
+                  </a>
+                  <a href="abstractos.html">
+                        <svg class="flota" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 12 12"><path fill="currentColor" d="M8 7H7v2H6v1h1v1h1Zm0 0h1V6h1V5H7V4H6v2h2Zm-8 5h1v-1H0Zm1-1h1v-1H1Zm2 0h1v-1h1V9H4V7H3Zm2-2h1V8H5ZM2 7h1V6h2V4H4v1H1v1h1ZM1 4h1V3H1ZM0 3h1V2H0Zm10 9h1v-1h-1Zm-1-1h1v-1H9ZM5 4h1V2H5Zm4 0h1V3H9Zm1-1h1V2h-1Zm0 0"/></svg>  
+                  </a>
+                  <a href="calles.html">
+                        <svg class="flota" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 12 12"><!-- Icon from Dinkie Icons by atelierAnchor - https://github.com/atelier-anchor/dinkie-icons/blob/main/LICENSE --><path fill="currentColor" d="M0 12h11v-1H9v-1h1V9H8V8h1V2H8v3H3V2H2v6h1v1H1v1h1v1H0Zm3-1v-1h5v1Zm1-2V8h3v1ZM3 7V6h1v1Zm4 0V6h1v1ZM5 3h1V2h2V1H3v1h2Zm0 0"/></svg>
+                  </a>
+             </nav>
+            </footer>
 </body>  
 
 <style>
@@ -139,4 +189,72 @@ import vivo24 from "../img/viv/viv24.jpg"
   gap: 0.5rem;
   padding: 2%;
 }
+footer {
+  width: 100%;
+  background-color: #000000; 
+  padding: 1rem;
+  font-size: 3rem;        
+}
+
+.menu {
+  display: flex;
+  justify-content: center; 
+  gap: 5rem;               
+}
+
+.menu a {
+  color: rgb(26, 26, 26);
+  text-decoration: none;
+  font-size: 5px;
+  font-weight: 300;
+  transition: 0.2s;
+}
+.flota {
+  display: inline-block;         
+  text-decoration: none;
+  animation: float 2s ease-in-out infinite; 
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0); 
+  }
+  50% {
+    transform: translateY(-1rem);
+  }
+}
+.menu a:hover {
+  color: #ffffff; 
+}
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .lightbox.is-open {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
 </style>
